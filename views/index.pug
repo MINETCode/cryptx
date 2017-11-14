@@ -1,0 +1,20 @@
+extends plain_layout
+
+block content
+  section#main.grey
+    .container
+      .row
+        .twelve.columns
+          .card.question-card.mono
+            if error
+              p.error= error
+            if isOver
+              img(src='https://i.imgur.com/RkZwPGK.png', alt='Tum jeet gayye!', class='end', style='max-width:100%;margin:0;')
+            else
+              p
+                span.userLevel Level #{currentUser.cryptxLevel}:
+                span.question.serif #{question}
+                if currentUser.cryptxLevel == 13
+                  span.rail(style='display:none;') Rail gaadi arriving at Platform 13!
+              form(method='post', action='/').mono
+                input(type='text', placeholder='Press enter to submit', name='answer', maxlength='30', id="answer", required)
